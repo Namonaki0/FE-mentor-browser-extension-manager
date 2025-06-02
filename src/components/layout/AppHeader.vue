@@ -5,7 +5,6 @@ const isDarkMode = ref(false)
 
 const toggleTheme = () => {
   isDarkMode.value = !isDarkMode.value
-  console.log(`Switched to ${isDarkMode.value ? 'dark' : 'light'} mode`)
 }
 const iconPath = computed(() =>
   new URL(
@@ -18,7 +17,7 @@ const iconPath = computed(() =>
 <template>
   <div class="app-header">
     <div class="logo-container">
-      <img src="@/assets/images/logo.svg" alt="Logo" class="logo" />
+      <img src="../../assets/images/logo.svg" alt="Logo" class="logo" />
     </div>
     <button class="btn btn-primary" @click="toggleTheme">
       <img :src="iconPath" :alt="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'" class="icon" />
