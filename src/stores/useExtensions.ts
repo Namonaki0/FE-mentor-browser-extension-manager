@@ -29,6 +29,20 @@ export const useExtensions = defineStore('extensions', () => {
     loading.value = false
   }
 
+  const removeExtension = async (name: string) => {
+  const { error } = await supabase
+    .from('extensions')
+    .delete()
+    .eq('name', name)
+
+  if (!error) {
+    extensions.value = extensions.value.filter(e => e.name !== name)
+  } else {
+    console.error('Failed to delete:', error.message)
+    throw new Error(error.message)
+  }
+}
+
   const filteredExtensions = computed(() => {
     if (filter.value === 'active') return extensions.value.filter(e => e.isActive)
     if (filter.value === 'inactive') return extensions.value.filter(e => !e.isActive)
@@ -41,6 +55,7 @@ export const useExtensions = defineStore('extensions', () => {
     loading,
     error,
     fetchExtensions,
+    removeExtension,
     filteredExtensions
   }
 })

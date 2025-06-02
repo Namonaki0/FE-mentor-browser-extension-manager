@@ -9,9 +9,14 @@ const props = defineProps<{ extension: Extension }>()
 const showModal = ref(false)
 const store = useExtensions()
 
-function confirmRemoval() {
-  store.removeExtension(props.extension.name)
-  showModal.value = false
+const confirmRemoval = async () => {
+  try {
+    await store.removeExtension(props.extension.name)
+    showModal.value = false
+  } catch (err) {
+    console.error('Deletion failed:', err)
+    alert('Failed to remove extension. Please try again.')
+  }
 }
 
 function resolveLogo(path: string): string {
