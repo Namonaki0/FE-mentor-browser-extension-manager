@@ -9,6 +9,15 @@ const props = defineProps<{ extension: Extension }>()
 const showModal = ref(false)
 const store = useExtensions()
 
+const handleToggle = async () => {
+  try {
+    await store.toggleActive(props.extension.name)
+  } catch (err) {
+    console.error('Toggle failed:', err)
+    alert('Failed to update toggle. Please try again.')
+  }
+}
+
 const confirmRemoval = async () => {
   try {
     await store.removeExtension(props.extension.name)
@@ -38,12 +47,12 @@ function resolveLogo(path: string): string {
       <button class="remove-btn" @click="showModal = true">Remove</button>
       <div class="toggle-wrapper">
         <label class="switch">
-          <input
-            type="checkbox"
-            :checked="extension.isActive"
-            @change="store.toggleActive(extension.name)"
-          />
-          <span class="slider"></span>
+        <input
+          type="checkbox"
+          :checked="extension.isActive"
+          @change="handleToggle"
+        />
+        <span class="slider"></span>
         </label>
       </div>
     </div>

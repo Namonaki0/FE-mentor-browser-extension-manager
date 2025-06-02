@@ -29,19 +29,36 @@ export const useExtensions = defineStore('extensions', () => {
     loading.value = false
   }
 
-  const removeExtension = async (name: string) => {
+  const toggleActive = async (name: string) => {
+  const ext = extensions.value.find(e => e.name === name)
+  if (!ext) return
+
   const { error } = await supabase
     .from('extensions')
-    .delete()
+    .update({ is_active: !ext.isActive })
     .eq('name', name)
 
-  if (!error) {
-    extensions.value = extensions.value.filter(e => e.name !== name)
-  } else {
-    console.error('Failed to delete:', error.message)
+  if (error) {
+    console.error('Failed to toggle:', error.message)
     throw new Error(error.message)
   }
-}
+
+  ext.isActive = !ext.isActive
+  }
+
+  const removeExtension = async (name: string) => {
+    const { error } = await supabase
+      .from('extensions')
+      .delete()
+      .eq('name', name)
+
+    if (!error) {
+      extensions.value = extensions.value.filter(e => e.name !== name)
+    } else {
+      console.error('Failed to delete:', error.message)
+      throw new Error(error.message)
+    }
+  }
 
   const filteredExtensions = computed(() => {
     if (filter.value === 'active') return extensions.value.filter(e => e.isActive)
@@ -55,6 +72,7 @@ export const useExtensions = defineStore('extensions', () => {
     loading,
     error,
     fetchExtensions,
+    toggleActive,
     removeExtension,
     filteredExtensions
   }
