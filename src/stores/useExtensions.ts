@@ -1,12 +1,33 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import type { Extension } from '@/types/extension'
-import rawData from '@/data/data.json'
+import { supabase } from '@/lib/supabase'
 
 export const useExtensions = defineStore('extensions', () => {
-  const extensions = ref<Extension[]>(rawData)
-
+  const extensions = ref<Extension[]>([])
   const filter = ref<'all' | 'active' | 'inactive'>('all')
+  const loading = ref(false)
+  const error = ref<null | string>(null)
+
+  const fetchExtensions = async () => {
+    loading.value = true
+    const { data, error: fetchError } = await supabase
+      .from('extensions')
+      .select('name, description, logo, is_active')
+
+    if (fetchError) {
+      error.value = fetchError.message
+    } else {
+      extensions.value = data.map(row => ({
+        name: row.name,
+        description: row.description,
+        logo: row.logo,
+        isActive: row.is_active
+      }))
+    }
+
+    loading.value = false
+  }
 
   const filteredExtensions = computed(() => {
     if (filter.value === 'active') return extensions.value.filter(e => e.isActive)
@@ -14,22 +35,12 @@ export const useExtensions = defineStore('extensions', () => {
     return extensions.value
   })
 
-  const toggleActive = (name: string) => {
-    const ext = extensions.value.find(e => e.name === name)
-    if (ext) {
-      ext.isActive = !ext.isActive
-    }
-  }
-
-  const removeExtension = (name: string) => {
-    extensions.value = extensions.value.filter(e => e.name !== name)
-  }
-
   return {
     extensions,
     filter,
-    filteredExtensions,
-    toggleActive,
-    removeExtension
+    loading,
+    error,
+    fetchExtensions,
+    filteredExtensions
   }
 })

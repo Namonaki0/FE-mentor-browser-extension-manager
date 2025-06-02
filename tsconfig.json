@@ -3,6 +3,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "module": "esnext",
+    "target": "es2020",
+    "moduleResolution": "bundler",
+    "types": ["vite/client"]
   }
 }

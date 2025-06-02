@@ -1,10 +1,16 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useExtensions } from '@/stores/useExtensions'
 import ExtensionCard from './ExtensionCard.vue'
 import FilterTabs from './FilterTabs.vue'
 
 const store = useExtensions()
+
+onMounted(() => {
+  store.fetchExtensions()
+})
+
 const { filter, filteredExtensions } = storeToRefs(store)
 </script>
 
