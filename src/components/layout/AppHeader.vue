@@ -1,41 +1,58 @@
 <script setup lang="ts">
-const activate = () => {
-    console.log('Swtich color mode');
-};
+import { ref, computed } from 'vue'
+
+const isDarkMode = ref(false)
+
+const toggleTheme = () => {
+  isDarkMode.value = !isDarkMode.value
+  console.log(`Switched to ${isDarkMode.value ? 'dark' : 'light'} mode`)
+}
+const iconPath = computed(() =>
+  new URL(
+    `../../assets/icons/${isDarkMode.value ? 'icon-sun.svg' : 'icon-moon.svg'}`,
+    import.meta.url
+  ).href
+)
 </script>
+
 <template>
-<div class="app-header">
+  <div class="app-header">
     <div class="logo-container">
-        <img src="@/assets/images/logo.svg" alt="Logo" class="logo" /> 
+      <img src="@/assets/images/logo.svg" alt="Logo" class="logo" />
     </div>
-    <button class="btn btn-primary" @click="activate">
-        <img src="@/assets/icons/icon-moon.svg" alt="Switch Color Mode" class="icon" />
+    <button class="btn btn-primary" @click="toggleTheme">
+      <img :src="iconPath" :alt="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'" class="icon" />
     </button>
-</div>
+  </div>
 </template>
+
 <style scoped lang="scss">
+@use '@/styles/variables' as *;
+
 .app-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border: 1px solid $neutral-300;
+  border-radius: 10px;
+  background: $neutral-0;
+
+  .logo-container .logo {
+    height: 40px;
+  }
+
+  .btn {
+    border: none;
+    cursor: pointer;
+    background: $neutral-300;
     padding: 10px;
-    border: 1px solid $neutral-300;
-    border-radius: 6px;
+    border-radius: 10px;
 
-    .logo-container {
-        .logo {
-            height: 40px;
-        }
+    .icon {
+      width: 24px;
+      height: 24px;
     }
-
-    .btn {
-        border: none;
-        cursor: pointer;
-
-        .icon {
-            width: 24px;
-            height: 24px;
-        }
-    }
+  }
 }
 </style>
