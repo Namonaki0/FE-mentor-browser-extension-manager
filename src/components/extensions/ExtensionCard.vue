@@ -47,11 +47,11 @@ function resolveLogo(path: string): string {
       <button class="remove-btn" @click="showModal = true">Remove</button>
       <div class="toggle-wrapper">
         <label class="switch">
-        <input
-          type="checkbox"
-          :checked="extension.isActive"
-          @change="handleToggle"
-        />
+          <input
+            type="checkbox"
+            :checked="extension.isActive"
+            @change="handleToggle"
+          />
         <span class="slider"></span>
         </label>
       </div>
@@ -73,10 +73,11 @@ function resolveLogo(path: string): string {
   align-items: center;
   flex-direction: column;
   padding: 1rem;
+  border: 1px solid var(--card-border);
   border-radius: 15px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   margin: 15px 0;
-  background: $neutral-0;
+  background: var(--card-bg);
 }
 .logo-container {
   display: flex;
@@ -106,16 +107,17 @@ function resolveLogo(path: string): string {
   margin: 0;
 }
 .remove-btn {
-  border: 1px solid $neutral-300;
+  border: 1px solid var(--button-border);
   border-radius: 20px;
   padding: 6px 15px;
   cursor: pointer;
   transition: all 0.1s ease;
+  color: var(--text);
 }
 .remove-btn:hover,
 .remove-btn:focus {
-  background-color: $red-700;
-  color: $neutral-0;
+  background: var(--red-700);
+  color: var(--neutral-0);
 }
 .toggle-wrapper {
   display: flex;
@@ -124,6 +126,17 @@ function resolveLogo(path: string): string {
 }
 .toggle-label {
   font-weight: 500;
-  color: $neutral-900;
+  color: var(--neutral-900);
+}
+@media (min-width: 768px) {
+  .card {
+    width: 50%;
+  }
+}
+@media (min-width: 1024px) {
+  .card {
+    width: 33%;
+    margin: 0;
+  }
 }
 </style>

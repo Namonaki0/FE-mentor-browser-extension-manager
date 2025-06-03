@@ -15,13 +15,17 @@ const { filter, filteredExtensions } = storeToRefs(store)
 </script>
 
 <template>
-  <h1>Extensions List</h1>
-  <FilterTabs v-model="filter" />
-  <ExtensionCard
-    v-for="(extension, id) in filteredExtensions"
-    :key="id"
-    :extension="extension"
-  />
+  <div class="header-wrapper">
+    <h1>Extensions List</h1>
+    <FilterTabs v-model="filter" />
+  </div>
+  <div class="card-wrapper">
+    <ExtensionCard
+      v-for="(extension, id) in filteredExtensions"
+      :key="id"
+      :extension="extension"
+    />
+  </div>
 </template>
 <style scoped lang="scss">
 h1 {
@@ -29,5 +33,22 @@ h1 {
   font-size: 40px;
   text-align: center;
   margin: 25px 0 10px;
+}
+@media (min-width: 768px) {
+  .card-wrapper {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;  
+  }
+}
+@media (min-width: 1024px) {
+  .header-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-wrapper {
+    gap: 5px 5px;
+  }
 }
 </style>

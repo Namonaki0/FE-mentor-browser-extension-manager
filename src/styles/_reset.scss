@@ -13,10 +13,10 @@ html, body {
 
 body {
   line-height: 1.5;
-  font-family: $font-family;
-  font-size: $font-size-body;
-  background-color: $neutral-0;
-  color: $neutral-900;
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
+  background-color: var(--neutral-0);
+  color: var(--neutral-900);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

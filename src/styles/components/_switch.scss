@@ -19,7 +19,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: $neutral-300;
+    background-color: var(--neutral-300);
     border-radius: 34px;
     transition: background-color 0.2s;
 
@@ -37,7 +37,7 @@
   }
 
   input:checked + .slider {
-      background-color: $red-500;
+      background-color: var(--red-500);
 
     &::before {
       transform: translateX(18px);

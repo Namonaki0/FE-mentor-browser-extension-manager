@@ -26,7 +26,7 @@
 }
 
 .btn-confirm {
-  background: $red-500;
+  background: var(--red-500);
   color: white;
   border: none;
   padding: 0.5rem 1.2rem;
@@ -35,8 +35,8 @@
 }
 
 .btn-cancel {
-  background: $neutral-300;
-  color: $neutral-900;
+  background: var(--neutral-300);
+  color: var(--neutral-900);
   border: none;
   padding: 0.5rem 1.2rem;
   border-radius: 6px;

@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
+import { useTheme } from '@/composables/useTheme'
+import BaseLogo from '@/components/ui/BaseLogo.vue'
 
-const isDarkMode = ref(false)
+const { theme, toggleTheme } = useTheme()
 
-const toggleTheme = () => {
-  isDarkMode.value = !isDarkMode.value
-}
 const iconPath = computed(() =>
   new URL(
-    `../../assets/icons/${isDarkMode.value ? 'icon-sun.svg' : 'icon-moon.svg'}`,
+    `../../assets/icons/${theme.value === 'dark' ? 'icon-sun.svg' : 'icon-moon.svg'}`,
     import.meta.url
   ).href
 )
@@ -16,11 +15,9 @@ const iconPath = computed(() =>
 
 <template>
   <div class="app-header">
-    <div class="logo-container">
-      <img src="@/assets/images/logo.svg" alt="Logo" class="logo" />
-    </div>
+    <BaseLogo />
     <button class="btn btn-primary" @click="toggleTheme">
-      <img :src="iconPath" :alt="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'" class="icon" />
+      <img :src="iconPath" :alt="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'" class="icon" />
     </button>
   </div>
 </template>
@@ -33,18 +30,14 @@ const iconPath = computed(() =>
   align-items: center;
   justify-content: space-between;
   padding: 12px;
-  border: 1px solid $neutral-300;
+  border: 1px solid var(--default-border-color);
   border-radius: 10px;
-  background: $neutral-0;
-
-  .logo-container .logo {
-    height: 40px;
-  }
+  background: var(--card-bg);
 
   .btn {
     border: none;
     cursor: pointer;
-    background: $neutral-300;
+    background: var(--neutral-300);
     padding: 10px;
     border-radius: 10px;
 

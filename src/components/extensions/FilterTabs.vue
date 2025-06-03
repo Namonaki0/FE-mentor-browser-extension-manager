@@ -54,22 +54,22 @@ const modelValue = computed({
 .filter-option {
   display: inline-block;
   padding: .5rem 1.25rem;
-  border: 1px solid $neutral-300;
+  border: 1px solid var(--default-border-color);
   border-radius: 25px;
-  background: white;
-  color: $neutral-900;
+  background: var(--filter-bg);
+  color: var(--filter-text);
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 20px;
 
   &.active {
-    background-color: $red-500;
-    color: white;
+    background: var(--red-500);
+    color: var(--active-button);
   }
 
   &:hover:not(.active) {
-    background-color: $neutral-100;
+    background: var(--neutral-100);
   }
 }
 .sr-only {
@@ -80,5 +80,10 @@ const modelValue = computed({
   clip: rect(0 0 0 0);
   white-space: nowrap;
   border: 0;
+}
+@media (min-width: 768px) {
+  .filter-tabs {
+    padding: 0;
+  }
 }
 </style>
