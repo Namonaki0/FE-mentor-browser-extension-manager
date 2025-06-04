@@ -11,13 +11,18 @@ const iconPath = computed(() =>
     import.meta.url
   ).href
 )
+
+const altText = computed(() =>
+  theme.value === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+)
+
 </script>
 
 <template>
   <div class="app-header">
     <BaseLogo />
-    <button class="btn btn-primary" @click="toggleTheme">
-      <img :src="iconPath" :alt="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'" class="icon" />
+    <button class="theme-switcher" @click="toggleTheme">
+      <img :src="iconPath" :alt="altText" class="icon" />
     </button>
   </div>
 </template>
@@ -34,7 +39,7 @@ const iconPath = computed(() =>
   border-radius: 10px;
   background: var(--card-bg);
 
-  .btn {
+  .theme-switcher {
     border: none;
     cursor: pointer;
     background: var(--theme-switcher);
