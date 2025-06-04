@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{
-  name: string
+  name?: string,
+  message?: string
 }>()
 
 const emit = defineEmits<{
@@ -12,7 +13,7 @@ const emit = defineEmits<{
 <template>
   <div class="modal-backdrop" @click.self="emit('cancel')">
     <div class="modal-content">
-      <p>Are you sure you want to remove the <strong>{{ name }}</strong> extension?</p>
+      <p>{{message || `Are you sure you want to remove the "${name}" extension?`}}</p>
       <div class="actions">
         <button class="btn-confirm" @click="emit('confirm')">Yes</button>
         <button class="btn-cancel" @click="emit('cancel')">No</button>
@@ -21,6 +22,6 @@ const emit = defineEmits<{
   </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 @use '@/styles/components/modal' as *;
 </style>

@@ -62,14 +62,22 @@ const modelValue = computed({
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 20px;
+  outline: 2px solid var(--outline-spacing);
+  border: 2px solid var(--outline-spacing);
 
   &.active {
     background: var(--red-500);
     color: var(--active-button);
+    
+    &:hover {
+      outline: 2px solid var(--red-500);
+    }
   }
 
   &:hover:not(.active) {
-    background: var(--neutral-100);
+    background: var(--not-active-hover);
+    border: 2px solid var(--outline-spacing);
+    outline: 2px solid var(--not-active-outline);
   }
 }
 .sr-only {

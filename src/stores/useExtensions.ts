@@ -10,24 +10,56 @@ export const useExtensions = defineStore('extensions', () => {
   const error = ref<null | string>(null)
 
   const fetchExtensions = async () => {
-    loading.value = true
-    const { data, error: fetchError } = await supabase
-      .from('extensions')
-      .select('name, description, logo, is_active')
+  const { data, error: fetchError } = await supabase
+    .from('extensions')
+    .select('name, description, logo, is_active, deleted')
+    .eq('deleted', false) // 👈 exclude deleted
 
-    if (fetchError) {
-      error.value = fetchError.message
-    } else {
+    if (!fetchError && data) {
       extensions.value = data.map(row => ({
         name: row.name,
         description: row.description,
         logo: row.logo,
         isActive: row.is_active
       }))
+    } else {
+      console.error(fetchError?.message)
     }
-
-    loading.value = false
   }
+
+const restoreDeletedExtensions = async () => {
+  const { data, error } = await supabase
+    .from('extensions')
+    .select('name')
+    .eq('deleted', true)
+
+  if (error) {
+    console.error('Failed to fetch deleted extensions:', error.message)
+    return
+  }
+
+  const restoreNames = data.map(e => e.name)
+
+  if (restoreNames.length === 0) {
+    console.log('No extensions to restore.')
+    return
+  }
+
+  console.log('Restoring:', restoreNames)
+
+  const { error: updateError } = await supabase
+    .from('extensions')
+    .update({ deleted: false, is_active: false })
+    .in('name', restoreNames)
+
+  if (updateError) {
+    console.error('Failed to restore extensions:', updateError.message)
+    return
+  }
+
+  await fetchExtensions()
+}
+
 
   const toggleActive = async (name: string) => {
   const ext = extensions.value.find(e => e.name === name)
@@ -49,8 +81,9 @@ export const useExtensions = defineStore('extensions', () => {
   const removeExtension = async (name: string) => {
     const { error } = await supabase
       .from('extensions')
-      .delete()
+      .update({ deleted: true })
       .eq('name', name)
+      console.log('Removing:', name)
 
     if (!error) {
       extensions.value = extensions.value.filter(e => e.name !== name)
@@ -74,6 +107,7 @@ export const useExtensions = defineStore('extensions', () => {
     fetchExtensions,
     toggleActive,
     removeExtension,
+    restoreDeletedExtensions,
     filteredExtensions
   }
 })

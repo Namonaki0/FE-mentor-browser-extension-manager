@@ -50,7 +50,7 @@ function resolveLogo(path: string): string {
           <input
             type="checkbox"
             :checked="extension.isActive"
-            @change="handleToggle"
+            @change="store.toggleActive(extension.name)"
           />
         <span class="slider"></span>
         </label>
@@ -60,7 +60,7 @@ function resolveLogo(path: string): string {
     <ConfirmModal
       v-if="showModal"
       :name="extension.name"
-      @confirm="confirmRemoval"
+      @confirm="store.removeExtension(extension.name); showModal = false"
       @cancel="showModal = false"
     />
   </div>
@@ -76,12 +76,14 @@ function resolveLogo(path: string): string {
   border: 1px solid var(--card-border);
   border-radius: 15px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  margin: 15px 0;
+  margin: 0;
+    margin-bottom: 10px;
   background: var(--card-bg);
 }
 .logo-container {
   display: flex;
   align-items: center;
+  width: 100%;
   flex: 1;
 }
 .logo {
@@ -98,16 +100,18 @@ function resolveLogo(path: string): string {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-top: 0.5rem;
+  margin-top: 2rem;
 }
 .name {
   margin-bottom: 0.5rem;
 }
 .description {
   margin: 0;
+  color: var(--secondary-text);
 }
 .remove-btn {
   border: 1px solid var(--button-border);
+  outline: 1px solid var(--card-bg);
   border-radius: 20px;
   padding: 6px 15px;
   cursor: pointer;
@@ -118,6 +122,7 @@ function resolveLogo(path: string): string {
 .remove-btn:focus {
   background: var(--red-700);
   color: var(--neutral-0);
+  outline: 1px solid var(--red-500);
 }
 .toggle-wrapper {
   display: flex;
@@ -128,15 +133,15 @@ function resolveLogo(path: string): string {
   font-weight: 500;
   color: var(--neutral-900);
 }
-@media (min-width: 768px) {
+@media (min-width: 770px) {
   .card {
-    width: 50%;
+    width: 49%;
+    margin-bottom: 0;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 1440px) {
   .card {
     width: 33%;
-    margin: 0;
   }
 }
 </style>

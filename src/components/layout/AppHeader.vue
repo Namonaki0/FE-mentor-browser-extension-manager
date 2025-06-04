@@ -37,7 +37,7 @@ const iconPath = computed(() =>
   .btn {
     border: none;
     cursor: pointer;
-    background: var(--neutral-300);
+    background: var(--theme-switcher);
     padding: 10px;
     border-radius: 10px;
 

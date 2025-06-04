@@ -19,6 +19,7 @@
 
   --bg: var(--gradient);
   --text: black;
+  --secondary-text: var(--neutral-600);
   
   --card-border: var(--neutral-200);
   --button-border: var(--neutral-300);
@@ -30,13 +31,19 @@
 
   --mobile-padding: 20px 12px;
   --desktop-padding: 20px 150px;
+
+  --theme-switcher: var(--neutral-100);
+  --outline-spacing: none;
+  --not-active-hover: opacity(0.9);
+  --not-active-outline: none;
+  --restore-button-bg: var(--neutral-0);
 }
 
 [data-theme='dark'] {
   --gradient: linear-gradient(180deg, #040918 0%, #091540 100%);
   --bg: var(--gradient);
   --text: var(--neutral-0);
-  --secondary-text: var(--neutral-100);
+  --secondary-text: var(--neutral-300);
   --default-border-color: transparent;
   --card-border: var(--neutral-600);
   --button-border: var(--neutral-600);
@@ -44,4 +51,9 @@
   --filter-bg: var(--neutral-800);
   --filter-text: var(--neutral-0);
   --active-button: var(--neutral-900);
+  --theme-switcher: var(--neutral-600);
+  --outline-spacing: #040918;
+  --not-active-hover: var(--neutral-600);
+  --not-active-outline: var(--red-500);
+  --restore-button-bg: var(--neutral-600);
 }
