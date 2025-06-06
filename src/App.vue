@@ -10,17 +10,5 @@ import ExtensionList from './components/extensions/ExtensionList.vue';
   </div>
 </template>
 <style scoped lang="scss">
-.app-container {
-  background: var(--bg);
-  color: var(--text);
-  padding: var(--mobile-padding);
-  min-height: 100vh;
-}
-
-@media (min-width: 1024px) {
-  .app-container {
-    padding: var(--desktop-padding);
-      
-  } 
-}
+@use '@/styles/globals' as *;
 </style>

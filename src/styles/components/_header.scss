@@ -1,0 +1,30 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border: 1px solid var(--default-border-color);
+  border-radius: 10px;
+  background: var(--card-bg);
+
+  .theme-switcher {
+    border: none;
+    cursor: pointer;
+    background: var(--theme-switcher);
+    padding: 10px;
+    border-radius: 10px;
+    outline: 2px solid var(--card-bg);
+    border: 2px solid var(--card-bg);
+    transition: var(--transition);
+
+    &:hover {
+      border: 2px solid var(--outline-spacing);
+      outline: 2px solid var(--not-active-outline)
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

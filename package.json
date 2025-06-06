@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.2",
     "@supabase/supabase-js": "^2.49.9",
     "pinia": "^3.0.2",
     "vue-router": "^4.5.1"

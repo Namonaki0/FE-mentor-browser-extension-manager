@@ -19,7 +19,7 @@ const altText = computed(() =>
 </script>
 
 <template>
-  <div class="app-header">
+  <div class="app-header" v-auto-animate>
     <BaseLogo />
     <button class="theme-switcher" @click="toggleTheme">
       <img :src="iconPath" :alt="altText" class="icon" />
@@ -28,28 +28,5 @@ const altText = computed(() =>
 </template>
 
 <style scoped lang="scss">
-@use '@/styles/variables' as *;
-
-.app-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px;
-  border: 1px solid var(--default-border-color);
-  border-radius: 10px;
-  background: var(--card-bg);
-
-  .theme-switcher {
-    border: none;
-    cursor: pointer;
-    background: var(--theme-switcher);
-    padding: 10px;
-    border-radius: 10px;
-
-    .icon {
-      width: 24px;
-      height: 24px;
-    }
-  }
-}
+@use '@/styles/components/header' as *;
 </style>

@@ -31,7 +31,7 @@ const modelValue = computed({
     >
       <input
         type="radio"
-        class="sr-only"
+        class="all-btn"
         name="filter"
         :value="option.value"
         v-model="modelValue"
@@ -43,55 +43,5 @@ const modelValue = computed({
 
 <style scoped lang="scss">
 @use '@/styles/variables' as *;
-
-.filter-tabs {
-  display: flex;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  display: flex;
-  justify-content: center;
-}
-.filter-option {
-  display: inline-block;
-  padding: .5rem 1.25rem;
-  border: 1px solid var(--default-border-color);
-  border-radius: 25px;
-  background: var(--filter-bg);
-  color: var(--filter-text);
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 20px;
-  outline: 2px solid var(--outline-spacing);
-  border: 2px solid var(--outline-spacing);
-
-  &.active {
-    background: var(--red-500);
-    color: var(--active-button);
-    
-    &:hover {
-      outline: 2px solid var(--red-500);
-    }
-  }
-
-  &:hover:not(.active) {
-    background: var(--not-active-hover);
-    border: 2px solid var(--outline-spacing);
-    outline: 2px solid var(--not-active-outline);
-  }
-}
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
-}
-@media (min-width: 768px) {
-  .filter-tabs {
-    padding: 0;
-  }
-}
+@use '@/styles/components/filter' as *;
 </style>

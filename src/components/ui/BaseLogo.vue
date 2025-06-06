@@ -4,8 +4,5 @@
     </div>
 </template>
 <style scoped lang="scss">
-.logo-container .logo {
-    height: 40px;
-    color: var(--text);
-}
+@use '@/styles/components/logo' as *;
 </style>

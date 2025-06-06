@@ -28,15 +28,16 @@
   --filter-bg: var(--neutral-0);
   --filter-text: var(--neutral-900);
   --active-button: var(--neutral-0);
-
+  --active-button-hover: none;
   --mobile-padding: 20px 12px;
   --desktop-padding: 20px 150px;
 
   --theme-switcher: var(--neutral-100);
-  --outline-spacing: none;
-  --not-active-hover: opacity(0.9);
+  --outline-spacing: #EBF2FC;
+  --not-active-hover: var(--neutral-0);
   --not-active-outline: none;
   --restore-button-bg: var(--neutral-0);
+  --transition: background 0.3s ease;
 }
 
 [data-theme='dark'] {
@@ -51,9 +52,11 @@
   --filter-bg: var(--neutral-800);
   --filter-text: var(--neutral-0);
   --active-button: var(--neutral-900);
+  --active-button-hover: var(--red-500);
   --theme-switcher: var(--neutral-600);
   --outline-spacing: #040918;
   --not-active-hover: var(--neutral-600);
   --not-active-outline: var(--red-500);
   --restore-button-bg: var(--neutral-600);
+  --transition: all 0.3s ease;
 }

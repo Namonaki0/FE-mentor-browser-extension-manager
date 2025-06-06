@@ -41,11 +41,8 @@ const restoreDeletedExtensions = async () => {
   const restoreNames = data.map(e => e.name)
 
   if (restoreNames.length === 0) {
-    console.log('No extensions to restore.')
     return
   }
-
-  console.log('Restoring:', restoreNames)
 
   const { error: updateError } = await supabase
     .from('extensions')
@@ -83,7 +80,6 @@ const restoreDeletedExtensions = async () => {
       .from('extensions')
       .update({ deleted: true })
       .eq('name', name)
-      console.log('Removing:', name)
 
     if (!error) {
       extensions.value = extensions.value.filter(e => e.name !== name)
