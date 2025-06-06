@@ -6,7 +6,7 @@
 
 [Browser Extension Manager](https://www.frontendmentor.io/challenges/browser-extension-manager-ui-yNZnOfsMAp)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/4bf6db40-b0e8-46c9-8edc-b449c2e6ac39/deploy-status)](https://app.netlify.com/projects/fe-mentor-browser-extension-manager-v/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/09fcf7d0-13f9-4f8e-aa25-4fa294e775a7/deploy-status)](https://app.netlify.com/projects/fe-mentor-browser-extension-manager/deploys)
 
 <h4>Built with:</h4>
 
