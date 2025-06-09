@@ -11,7 +11,6 @@
   .filter-option {
     display: inline-block;
     padding: 0.5rem 1.25rem;
-    border: 2px solid var(--outline-spacing);
     border-radius: 25px;
     background: var(--filter-bg);
     color: var(--filter-text);
@@ -19,13 +18,17 @@
     cursor: pointer;
     transition: var(--transition);
     font-size: 20px;
+    border: 2px solid var(--outline-spacing);
     outline: 2px solid var(--outline-spacing);
+    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.2);
+    transition: color 0.2s ease, border 0.2s ease, background 0.2s ease;
 
     &.active {
       background: var(--red-500);
       color: var(--active-button);
 
-      &:hover {
+      &:hover,
+      &:focus {
         outline: 2px solid var(--active-button-hover);
       }
     }
@@ -34,6 +37,7 @@
       background: var(--not-active-hover);
       border: 2px solid var(--outline-spacing);
       outline: 2px solid var(--not-active-outline);
+      color: var(--filter-text-hover);
     }
 
     .all-btn {

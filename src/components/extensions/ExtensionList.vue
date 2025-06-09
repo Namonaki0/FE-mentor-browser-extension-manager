@@ -30,7 +30,7 @@ const confirmRestore = async () => {
   <ul class="card-wrapper" v-auto-animate>
     <ExtensionCard
       v-for="(extension, id) in filteredExtensions"
-      :key="id"
+      :key="extension.name"
       :extension="extension"
     />
   </ul>
@@ -41,7 +41,7 @@ const confirmRestore = async () => {
   </div>
 
   <ConfirmModal
-    v-if="showRestoreConfirm"
+    v-show="showRestoreConfirm"
     :message="'Restore all deleted extensions?'"
     @confirm="confirmRestore"
     @cancel="showRestoreConfirm = false"

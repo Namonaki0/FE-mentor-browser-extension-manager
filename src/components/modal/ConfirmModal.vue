@@ -11,15 +11,17 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="modal-backdrop" @click.self="emit('cancel')">
-    <div class="modal-content">
-      <p>{{message || `Are you sure you want to remove the "${name}" extension?`}}</p>
-      <div class="actions">
-        <button class="btn-confirm" @click="emit('confirm')">Yes</button>
-        <button class="btn-cancel" @click="emit('cancel')">No</button>
+  <Transition name="fade">
+    <div class="modal-backdrop" @click.self="emit('cancel')">
+      <div class="modal-content">
+        <p>{{message || `Are you sure you want to remove the "${name}" extension?`}}</p>
+        <div class="actions">
+          <button class="btn-confirm" @click="emit('confirm')">Yes</button>
+          <button class="btn-cancel" @click="emit('cancel')">No</button>
+        </div>
       </div>
     </div>
-  </div>
+  </Transition> 
 </template>
 
 <style scoped lang="scss">

@@ -58,7 +58,7 @@ function resolveLogo(path: string): string {
     </div>
 
     <ConfirmModal
-      v-if="showModal"
+      v-show="showModal"
       :name="extension.name"
       @confirm="store.removeExtension(extension.name); showModal = false"
       @cancel="showModal = false"

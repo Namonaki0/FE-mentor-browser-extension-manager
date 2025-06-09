@@ -19,7 +19,7 @@ const altText = computed(() =>
 </script>
 
 <template>
-  <div class="app-header" v-auto-animate>
+  <div class="app-header">
     <BaseLogo />
     <button class="theme-switcher" @click="toggleTheme">
       <img :src="iconPath" :alt="altText" class="icon" />

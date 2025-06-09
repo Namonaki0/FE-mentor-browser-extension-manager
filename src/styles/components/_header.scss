@@ -18,8 +18,9 @@
     transition: var(--transition);
 
     &:hover {
-      border: 2px solid var(--outline-spacing);
-      outline: 2px solid var(--not-active-outline)
+      border: 2px solid var(--switcher-hover-outline);
+      outline: 2px solid var(--not-active-outline);
+      background: var(--switcher-background-hover);
     }
 
     .icon {

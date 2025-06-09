@@ -27,17 +27,20 @@
   --default-border-color: var(--neutral-300);
   --filter-bg: var(--neutral-0);
   --filter-text: var(--neutral-900);
+  --filter-text-hover: var(--neutral-600);
   --active-button: var(--neutral-0);
   --active-button-hover: none;
   --mobile-padding: 20px 12px;
   --desktop-padding: 20px 150px;
-
   --theme-switcher: var(--neutral-100);
   --outline-spacing: #EBF2FC;
   --not-active-hover: var(--neutral-0);
   --not-active-outline: none;
   --restore-button-bg: var(--neutral-0);
   --transition: background 0.3s ease;
+  --switcher-hover-outline: var(--neutral-0);
+  --switcher-background-hover: var(--neutral-300);
+  --remove-button-hover-outline: transparent;
 }
 
 [data-theme='dark'] {
@@ -51,6 +54,7 @@
   --card-bg: var(--neutral-800);
   --filter-bg: var(--neutral-800);
   --filter-text: var(--neutral-0);
+  --filter-text-hover: var(--neutral-0);
   --active-button: var(--neutral-900);
   --active-button-hover: var(--red-500);
   --theme-switcher: var(--neutral-600);
@@ -59,4 +63,7 @@
   --not-active-outline: var(--red-500);
   --restore-button-bg: var(--neutral-600);
   --transition: all 0.3s ease;
+  --switcher-hover-outline: #040918;
+  --switcher-background-hover: var(--neutral-600);
+  --remove-button-hover-outline: var(--red-500);
 }
